@@ -1,10 +1,13 @@
 version: "3"
 services:
-  maven:
+  builder:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: maven_container
+    container_name: maven_container1
+    image: builder:latest
+    depends_on:
+      - db
   db:
     image: mysql:latest
     restart: always
@@ -19,14 +22,15 @@ services:
       - "8514:8514"
 
   tomcat:
-    image: tomcat:9.0-jre8-alpine
-    container_name: tomcat-container
-    volumes:
-      - ./target/App42PaaS-Java-MySQL-Sample-0.0.1-SNAPSHOT.war:/usr/local/tomcat/webapps/myapp.war
-    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: T.Dockerfile
+    image: tomcat:latest
     ports:
-      - 8082:8080
+      - 8080:8080
     depends_on:
-      - maven
+      - builder
       - db
+    container_name: tomcat-container2
+    restart: unless-stopped
 
