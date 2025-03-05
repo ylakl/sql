@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile
     container_name: maven_container
     volumes:
-      - shared_data:/target/
+      - shared_data:/usr/local/tomcat/webapps/
   db:
     image: mysql:latest
     restart: always
