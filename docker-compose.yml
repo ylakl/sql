@@ -33,6 +33,6 @@ services:
       - db
     volumes:
       - ./WebContent:/usr/local/tomcat/ROOT/
-    co1ntainer_name: tomcat-container2
+    container_name: tomcat-container2
     restart: unless-stopped
 
