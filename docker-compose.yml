@@ -5,8 +5,6 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: maven_container
-    volumes:
-      - shared_data:/usr/local/tomcat/webapps/
   db:
     image: mysql:latest
     restart: always
@@ -24,7 +22,6 @@ services:
     image: tomcat:9.0-jre8-alpine
     container_name: tomcat-container
     volumes:
-      - shared_data:/usr/local/tomcat/webapps/
       - ./target/App42PaaS-Java-MySQL-Sample-0.0.1-SNAPSHOT.war:/usr/local/tomcat/webapps/myapp.war
     restart: unless-stopped
     ports:
@@ -32,5 +29,4 @@ services:
     depends_on:
       - maven
       - db
-volumes:
-  shared_data:
+
