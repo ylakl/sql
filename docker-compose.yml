@@ -1,0 +1,35 @@
+version: "3"
+services:
+  maven:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: maven_container
+    volumes:
+      - shared_data:/usr/local/tomcat/webapps/
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: jc31d2qyy7h9jv5jn1u9uosjksxzaizw
+      MYSQL_DATABASE: dd
+      MYSQL_USER: acp4pogynvaeidfj
+      MYSQL_PASSWORD: jc31d2qyy7h9jv5jn1u9uosjksxzaizw
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+    ports:
+      - "8514:8514"
+
+  tomcat:
+    image: tomcat:9.0-jre8-alpine
+    container_name: tomcat-container
+    volumes:
+      - shared_data:/usr/local/tomcat/webapps/
+    restart: unless-stopped
+    ports:
+      - 8082:8080
+    depends_on:
+      - maven
+      - db
+volumes:
+  shared_data:
