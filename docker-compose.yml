@@ -25,7 +25,7 @@ services:
     container_name: tomcat-container
     volumes:
       - shared_data:/usr/local/tomcat/webapps/
-      - /target/App42PaaS-Java-MySQL-Sample-0.0.1-SNAPSHOT.war:/usr/local/tomcat/webapps/myapp.war
+      - ./target/App42PaaS-Java-MySQL-Sample-0.0.1-SNAPSHOT.war:/usr/local/tomcat/webapps/myapp.war
     restart: unless-stopped
     ports:
       - 8082:8080
