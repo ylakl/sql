@@ -12,14 +12,14 @@ services:
     image: mysql:latest
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: jc31d2qyy7h9jv5jn1u9uosjksxzaizw
+      MYSQL_ROOT_PASSWORD: 1234
       MYSQL_DATABASE: dd
-      MYSQL_USER: acp4pogynvaeidfj
-      MYSQL_PASSWORD: jc31d2qyy7h9jv5jn1u9uosjksxzaizw
+      MYSQL_USER: user
+      MYSQL_PASSWORD: 1234
     volumes:
       - ./mysql_data:/var/lib/mysql
     ports:
-      - "8514:8514"
+      - "3306:3306"
 
   tomcat:
     build:
