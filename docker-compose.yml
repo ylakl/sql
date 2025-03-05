@@ -31,6 +31,8 @@ services:
     depends_on:
       - builder
       - db
-    container_name: tomcat-container2
+    volumes:
+      - ./WebContent:/usr/local/tomcat/ROOT/
+    co1ntainer_name: tomcat-container2
     restart: unless-stopped
 
